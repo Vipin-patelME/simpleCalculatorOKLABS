@@ -19,7 +19,7 @@ const calculationReducer = (state, action) =>{
         case OPERATOR:
             return{
                 ...state,
-                operator:(state.leftValue ? action.payload : "")
+                operator:(state.leftValue ?. action.payload)
             }
         case CALCULATION:
             switch(state.operator){
