@@ -1,0 +1,29 @@
+.cal-body{
+    background-color: black;
+    padding: 20px;
+    width: 30%;
+    min-height: 40%;
+    border-radius: 10px;
+  }
+  .imput-style{
+    color: black;
+    width: 85%;
+    border-radius: 8px;
+    height: 20px;
+    background-color: yellowgreen;
+    text-align: end;
+    padding: 10px;
+    font-size: 24px;
+  }
+  .btn-cont{
+    margin-top: 20px;
+  }
+  .cal-button{
+    color: aquamarine;
+    background-color: rgb(59, 36, 36);
+    width: 60px;
+    height: 35px;
+    font-size: 20px;
+    margin: 8px;
+    cursor: pointer;
+  }

@@ -1,0 +1,7 @@
+export const DIGITS = "DIGITS"
+export const ADD = "ADD"
+export const SUB = "SUB"
+export const MULTI = "MULTI"
+export const DIVIDE = "DIVIDE"
+export const RESET = "RESET"
+export const CALCULATION = "CALCULATION"
