@@ -63,7 +63,11 @@ const calculationReducer = (state, action) =>{
                         ...state,
                         result: (parseFloat(state.leftValue) * parseFloat(state.rightValue)) / 100
                     }
+                default:
+                    break
             }
+            return state
+              
         case RESET:
             return{
                 leftValue:"",
