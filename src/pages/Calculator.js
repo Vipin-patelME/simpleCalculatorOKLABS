@@ -12,15 +12,35 @@ const initialValues = {
 const calculationReducer = (state, action) =>{
     switch(action.type){
         case DIGITS:
-            return{
-                ...state,
-                ...(state.operator !== "" ? {rightValue: state.rightValue + action.payload} : {leftValue: state.leftValue + action.payload} )
-            }
+            return(
+                state?.result !== "" ?
+                {
+                    leftValue:"",
+                    operator:"",
+                    rightValue:"",
+                    result:""
+                }
+                : 
+                {
+                    ...state,
+                    ...(state.operator !== "" ? {rightValue: state.rightValue + action.payload} : {leftValue: state.leftValue + action.payload} )
+                }
+            )
         case OPERATOR:
-            return{
-                ...state,
-                operator:(state.leftValue ?. action.payload)
-            }
+            return(
+                state?.result !== "" ?
+                {
+                    leftValue:"",
+                    operator:"",
+                    rightValue:"",
+                    result:""
+                }
+                :
+                {
+                    ...state,
+                    operator:(state.leftValue ? action.payload:"")
+                }
+            )
         case CALCULATION:
             switch(state.operator){
                 case "+":
