@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react'
-import { ADD, CALCULATION, DIGITS, DIVIDE, MULTI, RESET, SUB } from './reducer/actions'
+import {CALCULATION, DIGITS, OPERATOR, RESET} from './reducer/actions'
 import './style.css'
 
 const initialValues = {
@@ -16,25 +16,10 @@ const calculationReducer = (state, action) =>{
                 ...state,
                 ...(state.operator !== "" ? {rightValue: state.rightValue + action.payload} : {leftValue: state.leftValue + action.payload} )
             }
-        case ADD:
+        case OPERATOR:
             return{
                 ...state,
-                operator:action.payload
-            }
-        case SUB:
-            return{
-                ...state,
-                operator:action.payload
-            }
-        case MULTI:
-            return{
-                ...state,
-                operator:action.payload
-            }
-        case DIVIDE:
-            return{
-                ...state,
-                operator:action.payload
+                operator:(state.leftValue ? action.payload : "")
             }
         case CALCULATION:
             switch(state.operator){
@@ -100,18 +85,18 @@ const Calculator = () => {
             <input className='imput-style' type="text" value={result === "" ?(leftValue + operator + rightValue) : result} disabled />
             <div className='btn-cont'>
                 <button onClick = {()=>{dispatch({type:RESET})}} style={{width:"80px", backgroundColor:"red", color:"white", fontSize:"20px", height:"35px", cursor:"pointer"}} type='button'>C</button>
-                <button onClick = {()=>{dispatch({type:ADD, payload:"+"})}} className='cal-button' type='button'>+</button>
-                <button onClick = {()=>{dispatch({type:SUB, payload:"-"})}} className='cal-button' type='button'>-</button>
-                <button onClick = {()=>{dispatch({type:DIVIDE, payload:"/"})}} className='cal-button' type='button'>/</button>
+                <button onClick = {()=>{dispatch({type:OPERATOR, payload:"+"})}} className='cal-button' type='button'>+</button>
+                <button onClick = {()=>{dispatch({type:OPERATOR, payload:"-"})}} className='cal-button' type='button'>-</button>
+                <button onClick = {()=>{dispatch({type:OPERATOR, payload:"/"})}} className='cal-button' type='button'>/</button>
                 <button onClick = {()=>{dispatch({type:CALCULATION})}} style={{width:"80px", backgroundColor:"green", color:"white", fontSize:"20px", height:"35px", cursor:"pointer"}} type='button'>=</button>
                 <button onClick = {()=>{dispatch({type:DIGITS, payload:1})}} className='cal-button' type='button'>1</button>
                 <button onClick = {()=>{dispatch({type:DIGITS, payload:2})}}className='cal-button' type='button'>2</button>
                 <button onClick = {()=>{dispatch({type:DIGITS, payload:3})}}className='cal-button' type='button'>3</button>
-                <button onClick = {()=>{dispatch({type:SUB, payload:"*"})}} style={{marginLeft:"70px"}} className='cal-button' type='button'>x</button>
+                <button onClick = {()=>{dispatch({type:OPERATOR, payload:"*"})}} style={{marginLeft:"70px"}} className='cal-button' type='button'>x</button>
                 <button onClick = {()=>{dispatch({type:DIGITS, payload:4})}}className='cal-button' type='button'>4</button>
                 <button onClick = {()=>{dispatch({type:DIGITS, payload:5})}}className='cal-button' type='button'>5</button>
                 <button onClick = {()=>{dispatch({type:DIGITS, payload:6})}}className='cal-button' type='button'>6</button>
-                <button onClick = {()=>{dispatch({type:SUB, payload:"%"})}} style={{marginLeft:"70px"}} className='cal-button' type='button'>%</button>
+                <button onClick = {()=>{dispatch({type:OPERATOR, payload:"%"})}} style={{marginLeft:"70px"}} className='cal-button' type='button'>%</button>
                 <button onClick = {()=>{dispatch({type:DIGITS, payload:7})}}className='cal-button' type='button'>7</button>
                 <button onClick = {()=>{dispatch({type:DIGITS, payload:8})}}className='cal-button' type='button'>8</button>
                 <button onClick = {()=>{dispatch({type:DIGITS, payload:9})}}className='cal-button' type='button'>9</button>
